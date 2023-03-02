@@ -28,7 +28,7 @@ def normalize_cifar10_images(X):
     X = (X.astype(np.float32) - mean_rgb) / std_rgb
     return X
 
-dataset_dir = "/Users/abhinabacharya/PycharmProjects/data_compare"
+dataset_dir = "~/PycharmProjects/data_compare"
 
 normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                      std=[0.229, 0.224, 0.225])
@@ -62,8 +62,8 @@ def load_cifar10_data_diet():
     print('load cifar10... ', end='')
     time_start = time.time()
     (X_train, Y_train), (X_test, Y_test) = tfds.as_numpy(tfds.load(
-      name='cifar10', split=['train', 'test'], data_dir=args.data_dir,
-      batch_size=-1, download=False, as_supervised=True))
+      name='cifar10', split=['train', 'test'], data_dir=dataset_dir,
+      batch_size=-1, download=True, as_supervised=True))
     print(f'{int(time.time() - time_start)}s')
     # normalize images, one hot labels
     num_classes = 10
@@ -77,6 +77,6 @@ def load_cifar10_data_diet():
 
 
 X_train, Y_train, X_test, Y_test = load_cifar10_data_diet()
-data_diet_data = [ x for x in indexed_loader]
 
-pdb.set_trace()
+for x in indexed_loader:
+    pdb.set_trace()
